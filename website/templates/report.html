@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% import "_table.html" as t %}
+{% block title %}{{ page_title }}{% endblock %}
+{% block content %}
+  <h1>{{ page_title }}</h1>
+  {% for sec in sections %}
+    {{ t.show(sec) }}
+  {% endfor %}
+{% endblock %}

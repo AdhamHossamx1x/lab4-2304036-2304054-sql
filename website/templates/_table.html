@@ -1,0 +1,15 @@
+{% macro show(sec) %}
+  <h3>{{ sec.title }}</h3>
+  {% if sec.error %}
+    <p class="error">SQL error: {{ sec.error }}</p>
+  {% elif not sec.rows %}
+    <p class="empty">No rows.</p>
+  {% else %}
+    <table>
+      <tr>{% for c in sec.columns %}<th>{{ c }}</th>{% endfor %}</tr>
+      {% for row in sec.rows %}
+        <tr>{% for v in row %}<td>{{ v if v is not none else 'NULL' }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  {% endif %}
+{% endmacro %}
